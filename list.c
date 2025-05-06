@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define H 5863588
+
+#define H 177645
+#define C 177640
+#define ADD 193450094
+#define REMOVE 6952682928051
+#define CHANGE 6952099022091
+#define SIZE 6384506208
+
+
 // #include <editline/readline.h>
 
 typedef struct node {
@@ -14,6 +22,7 @@ void print_list(Node *head);
 unsigned long strHash(const char *str);
 Node *insert_node_at_head(Node *head, int new_value);
 Node *insert_at_tail(Node *head, int value);
+void check_LL_Status();
 
 Node *head = NULL;
 static char input[2048];
@@ -40,6 +49,15 @@ int main() {
   // c.next = NULL;
 
   //  print_list(head);
+}
+
+void check_LL_Status(){
+  if (head == NULL){
+  printf ("Linked List has not been initiated");
+  } else {
+  printf ("Linked List has been initiated");
+
+  }
 }
 
 Node *insert_node_at_head(Node *head, int new_value) {
@@ -92,9 +110,24 @@ void initiate_prompt() {
     // SWITCH STATEMENT
     switch (strHash(input)) {
     case H:
-      printf("Statement 1");
+        /* TODO: add All statements here */
+      printf("All statement to be added NOT DONE YET ABHINAV\n");
       break;
-
+    case C:
+      check_LL_Status();
+      break;
+case ADD:
+        printf("ADD functionality not yet implemented\n");
+      break;
+    case REMOVE:
+      printf("REMOVE functionality not yet implemented\n");
+      break;
+    case CHANGE:
+      printf("CHANGE functionality not yet implemented\n");
+      break;
+    case SIZE:
+      printf("SIZE functionality not yet implemented\n");
+      break;
     default:
       printf("Not a valid entry\n");
       printf(" Type \"h\" for help\n");
@@ -107,8 +140,9 @@ unsigned long strHash(const char *str) {
   unsigned long hash = 5381;
   int c;
 
-  printf("str is : %s", str);
+//  printf("str is : %s", str);
   while ((c = *str++))
     hash = ((hash << 5) + hash) + c;
+  printf("str is : %ld\n", hash);
   return hash;
 }
