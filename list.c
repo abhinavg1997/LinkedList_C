@@ -8,6 +8,7 @@
 #define CHANGE 6952099022091
 #define SIZE 6384506208
 #define EXIT 6384018879
+#define SHOW 6384504774
 
 // #include <editline/readline.h>
 
@@ -37,19 +38,19 @@ int main() {
   //  head = insert_node_at_head(head, 7);
   // head = insert_node_at_head(head, 5);
   // head = insert_node_at_head(head, 3);
-  //  head = insert_at_tail(head, 7);
-  // head = insert_at_tail(head, 1);
-  // head = insert_at_tail(head, 2);
+  // head = insert_at_tail(head, 7);
+  //  head = insert_at_tail(head, 1);
+  //  head = insert_at_tail(head, 2);
   //  Node a, b, c;
-  // a.value = 5;
-  // b.value = 6;
-  // c.value = 7;
+  //  a.value = 5;
+  //  b.value = 6;
+  //  c.value = 7;
   //
-  // a.next = &b;
-  // b.next = &c;
-  // c.next = NULL;
+  //  a.next = &b;
+  //  b.next = &c;
+  //  c.next = NULL;
 
-  //  print_list(head);
+  print_list(head);
 }
 
 void check_LL_Status() {
@@ -92,26 +93,31 @@ void print_list(Node *head) {
   Node *current;
   current = head;
 
+  printf("Printing List\n");
   int i = 0;
   while (current != NULL) {
     printf("Node %d: %d\n", i, current->value);
     i++;
     current = current->next;
   }
+
+  printf("Printing DONE\n");
 }
 
 void initiate_prompt() {
 
-  printf("Welcome to Linked List in C demonstration. type \"h\" or \"help\" "
-         "for help\n");
+  printf("Welcome to Linked List in C demonstration. type \"H\" for help\n");
   while (1) {
     printf("Enter Your command> ");
     scanf("%2047s", input);
     // SWITCH STATEMENT
     switch (strHash(input)) {
     case H:
-      /* TODO: add All statements here */
-      printf("All statement to be added NOT DONE YET ABHINAV\n");
+      printf("\nAvailable Commands:\n");
+      printf("1. 'ADD' - Add a number to the end of the list\n");
+      printf("2. 'SHOW' - Display all numbers in the list\n");
+      printf("3. 'EXIT' - Exit the program\n");
+      printf("\nNote that all commands are in caps\n");
       break;
     case C:
       check_LL_Status();
@@ -121,8 +127,11 @@ void initiate_prompt() {
       size++;
       printf("Enter Number:");
       scanf("%d", &addVal);
-      insert_at_tail(head, addVal);
+      // head = calloc(1, sizeof(Node));
+      // printf("%p\n", head);
+      head = insert_at_tail(head, addVal);
       printf(" Node Added\n");
+
       break;
     }
     case REMOVE:
@@ -132,7 +141,11 @@ void initiate_prompt() {
       printf("CHANGE functionality not yet implemented\n");
       break;
     case SIZE:
-      printf("SIZE functionality not yet implemented\n");
+      printf("Size: %d\n", size);
+      //      printf("SIZE functionality not yet implemented\n");
+      break;
+    case SHOW:
+      print_list(head);
       break;
     case EXIT:
       printf("Goodbye\n");
@@ -153,6 +166,7 @@ unsigned long strHash(const char *str) {
   //  printf("str is : %s", str);
   while ((c = *str++))
     hash = ((hash << 5) + hash) + c;
-  printf("str is : %ld\n", hash);
+  //  printf("str is : %ld\n", hash); <- USED for getting the hash value, which
+  //  I can assign to a new command
   return hash;
 }
